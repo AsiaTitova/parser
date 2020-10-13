@@ -1,0 +1,52 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.form__container {
+  padding: 60px 120px;
+}
+
+form {
+  padding: 50px;
+  box-shadow: 10px 10px 10px 10px #e5e5e5;
+}
+
+.form__title {
+  text-align: center;
+}
+
+.form__wrapper {
+  display: flex;
+  justify-content: space-around;
+}

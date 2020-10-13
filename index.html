@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Парсер - генератор форм</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+
+    </header>
+    <main>
+      <section class="page-main__form form">
+        <div class="form__container container">
+          <form action="#" method="POST" enctype="multipart/form-data" id="form">
+            <h2 class="form__title">Загрузить JSON File</h2>
+            <div class="form__wrapper">
+                <input type="file" id="jsonFile" name="jsonFile" accept=".json">
+                <button type="button" id="btnLoad" value="Load"">Загрузить JSON file</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+
+    </footer>
+
+    <template id="newForm">
+      <form action="#" method="POST" enctype="multipart/form-data">
+        <div class="newForm__container container">
+        </div>
+      </form>
+    </template>
+    
+    <script src="js/server.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
