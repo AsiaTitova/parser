@@ -4,11 +4,13 @@
 
   const form = document.querySelector('#form');
   const inputFile = form.querySelector('#jsonFile');
+  const newForm = document.querySelector('.new-form');
 
   // загрузка json файла //
 
   const btnLoad = document.querySelector('#btnLoad');
   btnLoad.addEventListener('click', () => {
+    addClassElement(newForm, 'new-form--show');
     createJsonFiles();
   });
 
@@ -30,37 +32,46 @@
       let forms = e.target.result;
       let newArr = JSON.parse(forms); 
       console.log(newArr);
+      let newArrLabel = Array.from(newArr.fields);
+      console.log(newArrLabel);
+      createNewWrap(newForm, newArr.fields);
+      createNewButton(newForm, newArr.buttons, newArr.buttons.text);
+      console.log(newArr.buttons);
+      createLabel(newArrLabel);
     }
   }
 
-  //отрисовка новой формы //
-
-  var newFormTemplate = document.querySelector('#newForm').content.querySelector('.newForm__container');
-
-  // копирование шаблона //
-  function createNewForm() {
-    var newForm = newFormTemplate.cloneNode(true);
-    createLabel(newForm, newArr.fields.label);
-  }
-
-
-  //отрисовка label //
-  function createLabel(container, label) {
-    for (var i = 0; i < label.length; i++) {
-      var labelItem = document.createElement('label');
-      labelItem.classList.add('form__label');
-      labelItem.textContent = label[i];
-      container.appendChild(labelItem);
+  //отрисовка button //
+    function createNewButton(container, button, content) {
+      button.forEach (function (item, i) {
+        item = document.createElement('button');
+        item.classList.add('new-form__button');
+        item.innerHTML = content;
+        container.appendChild(item);
+      });
     }
-  }
 
-  // отрисовка input //
-  function createInputs(container, input) {
-    for (var i = 0; i < input.length; i++) {
-      var inputItem = document.createElement('input');
-      inputItem.classList.add('form__input');
-      container.querySelector('.form__wrapper').appendChild(inputItem);
+    // отрисовка label //
+    function createNewWrap(container, wrap) {
+      wrap.forEach (function (item, i) {
+        item = document.createElement('div');
+        item.classList.add('new-form__wrap');
+        container.appendChild(item);
+      });
     }
-  }
 
+    function createLabel(value) {
+        value.forEach (function (item, i) {
+        item = document.createElement('label');
+        item.classList.add('new-form__label');
+        item.innerHTML = item.label;
+        document.querySelectorAll('.new-form__wrap').forEach(function (element, i) {
+          element.appendChild(item);
+        });
+      });
+    }
+
+    function addClassElement (element, className) {
+      element.classList.add('new-form--show');
+    }
 })();

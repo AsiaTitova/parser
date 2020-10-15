@@ -40,6 +40,7 @@ body {
 form {
   padding: 50px;
   box-shadow: 10px 10px 10px 10px #e5e5e5;
+  margin-bottom: 50px;
 }
 
 .form__title {
@@ -49,4 +50,17 @@ form {
 .form__wrapper {
   display: flex;
   justify-content: space-around;
+}
+
+
+.new-form {
+  display: none;
+}
+
+.new-form--show {
+  display: block;
+}
+
+.new-form__wrap {
+  margin-bottom: 20px;
 }
