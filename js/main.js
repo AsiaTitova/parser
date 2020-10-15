@@ -34,10 +34,8 @@
       console.log(newArr);
       let newArrLabel = Array.from(newArr.fields);
       console.log(newArrLabel);
-      createNewWrap(newForm, newArr.fields);
-      createNewButton(newForm, newArr.buttons, newArr.buttons.text);
-      console.log(newArr.buttons);
-      createLabel(newArrLabel);
+      createNewWrap(newForm, newArr.fields, newArrLabel);
+      createNewButton(newForm, newArr.buttons, newArr.buttons);
     }
   }
 
@@ -46,32 +44,36 @@
       button.forEach (function (item, i) {
         item = document.createElement('button');
         item.classList.add('new-form__button');
-        item.innerHTML = content;
+        item.textContent = content[i].text;
         container.appendChild(item);
       });
     }
 
-    // отрисовка label //
-    function createNewWrap(container, wrap) {
+    // отрисовка label и Input //
+    function createNewWrap(container, wrap, content) {
       wrap.forEach (function (item, i) {
         item = document.createElement('div');
         item.classList.add('new-form__wrap');
+        // item.innerHTML = content[i].label + content[i].input;
+        createElementsForm(item, content[i].label, content[i].input.type, content[i].input.required);
         container.appendChild(item);
       });
     }
 
-    function createLabel(value) {
-        value.forEach (function (item, i) {
-        item = document.createElement('label');
-        item.classList.add('new-form__label');
-        item.innerHTML = item.label;
-        document.querySelectorAll('.new-form__wrap').forEach(function (element, i) {
-          element.appendChild(item);
-        });
-      });
+    const elementsFormTemplate = document.querySelector('#elementsForm');
+
+    function createElementsForm(container, contentLabel, contentInputType, contentInputRequired) {
+      var elementsForm = elementsFormTemplate.cloneNode(true).content.querySelector('div');;
+      elementsForm.querySelector('label').classList.add('new-form__label');
+      elementsForm.querySelector('input').classList.add('new-form__input');
+      elementsForm.querySelector('label').textContent = contentLabel;
+      elementsForm.querySelector('input').type = contentInputType;
+      elementsForm.querySelector('input').required = contentInputRequired;
+      container.appendChild(elementsForm);
     }
+   
 
     function addClassElement (element, className) {
-      element.classList.add('new-form--show');
+      element.classList.add(className);
     }
 })();
