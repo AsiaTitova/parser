@@ -16,14 +16,15 @@
           <form action="#" method="POST" enctype="multipart/form-data" id="form">
             <h2 class="form__title">Загрузить JSON File</h2>
             <div class="form__wrapper">
-                <input type="file" id="jsonFile" name="jsonFile" accept=".json">
-                <button type="button" id="btnLoad" value="Load"">Загрузить JSON file</button>
+              <input class="form__input visually-hidden" type="file" id="jsonFile" name="jsonFile" accept=".json">
+              <label class="form__label" for="jsonFile">
+                <span class="form__label--text">Выберите файл</span>
+              </label>
+              <button class="form__button" type="button" id="btnLoad" value="Load"">Загрузить</button>
             </div>
           </form>
 
           <form class="new-form" action="#" method="POST" enctype="multipart/form-data" id="new-form">
-            <div class="newForm__container container">
-            </div>
           </form>
         </div>
       </section>

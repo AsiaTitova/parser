@@ -34,10 +34,11 @@
       console.log(newArr);
       let newArrLabel = Array.from(newArr.fields);
       console.log(newArrLabel);
-      // let newArrReferences = Array.from(newArr.references);
-      // console.log(newArrReferences);
       createNewWrap(newForm, newArr.fields, newArrLabel);
-      // createNewReferences(newForm, newArr.references, newArrReferences)
+      if (newArr.references) {
+        let newArrReferences = Array.from(newArr.references);
+        createNewReferences(newForm, newArr.references, newArrReferences);
+      }
       if (newArr.buttons) {
         createNewButton(newForm, newArr.buttons, newArr.buttons);
       }
@@ -64,14 +65,14 @@
       });
     }
 
-    // function createNewReferences(container, wrap, content) {
-    //   wrap.forEach (function (item, i) {
-    //     item = document.createElement('div');
-    //     item.classList.add('new-form__wrap');
-    //     createCheckboxForm(item, content[i].text, content[i].input.type, content[i].input.required, content[i].input.checked);
-    //     container.appendChild(item);
-    //   });
-    // }
+    function createNewReferences(container, wrap, content) {
+      for (let item = 0; item < wrap.length; item++) {
+        item = document.createElement('div');
+        item.classList.add('new-form__wrap');
+        createCheckboxForm(item, content[1].text, content[0].input.type, content[0].input.required, content[0].input.checked);
+        container.appendChild(item);
+      };
+    }
 
     const elementsFormTemplate = document.querySelector('#elementsForm');
 
@@ -80,26 +81,55 @@
       elementsForm.querySelector('label').classList.add('new-form__label');
       elementsForm.querySelector('input').classList.add('new-form__input');
       elementsForm.querySelector('label').textContent = contentLabel;
+      elementsForm.querySelector('label').for = contentLabel;
+      elementsForm.querySelector('input').id = contentLabel;
       elementsForm.querySelector('input').type = contentInputType;
+      if (elementsForm.querySelector('input').type === 'file') {
+        elementsForm.querySelector('input').classList.add('visually-hidden');
+        let span = document.createElement('span');
+        span.classList.add('form__label--text');
+        elementsForm.querySelector('label').appendChild(span);
+      }
       elementsForm.querySelector('input').required = contentInputRequired;
       container.appendChild(elementsForm);
     }
 
-    // const checkboxFormTemplate = document.querySelector('#checkboxForm');
+    const checkboxFormTemplate = document.querySelector('#checkboxForm');
 
-    // function createCheckboxForm(container, contentLabel, contentInputType, contentInputRequired, contentInputChecked) {
-    //   var elementsForm = checkboxFormTemplate.cloneNode(true).content.querySelector('div');;
-    //   elementsForm.querySelector('label').classList.add('new-form__label');
-    //   elementsForm.querySelector('input').classList.add('new-form__checkbox');
-    //   elementsForm.querySelector('label').textContent = contentLabel;
-    //   elementsForm.querySelector('input').type = contentInputType;
-    //   elementsForm.querySelector('input').required = contentInputRequired;
-    //   elementsForm.querySelector('input').checked = contentInputChecked;
-    //   container.appendChild(elementsForm);
-    // }
+    function createCheckboxForm(container, contentLabel, contentInputType, contentInputRequired, contentInputChecked) {
+      var elementsForm = checkboxFormTemplate.cloneNode(true).content.querySelector('div');;
+      elementsForm.querySelector('label').classList.add('new-form__label');
+      elementsForm.querySelector('label').classList.add('new-form__label--checkbox');
+      elementsForm.querySelector('input').classList.add('new-form__checkbox');
+      elementsForm.querySelector('label').textContent = contentLabel;
+      elementsForm.querySelector('input').type = contentInputType;
+      elementsForm.querySelector('input').required = contentInputRequired;
+      elementsForm.querySelector('input').checked = contentInputChecked;
+      container.appendChild(elementsForm);
+    }
    
-
     function addClassElement (element, className) {
       element.classList.add(className);
     }
+
+    function addNewJsonFile() {
+      let inputs = document.querySelectorAll('.form__input');
+      Array.prototype.forEach.call(inputs, function (input) {
+        let label = input.nextElementSibling,
+          labelVal = label.querySelector('.form__label--text').innerText;
+  
+        input.addEventListener('change', function (e) {
+          let countFiles = '';
+          if (this.files && this.files.length >= 1)
+            countFiles = this.files.length;
+  
+          if (countFiles)
+            label.querySelector('.form__label--text').innerText = 'Выбрано файлов: ' + countFiles;
+          else
+            label.querySelector('.form__label--text').innerText = labelVal;
+        });
+      });
+    }
+
+    addNewJsonFile();
 })();
