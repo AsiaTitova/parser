@@ -15,22 +15,9 @@ body {
   flex-direction: column;
   font-style: normal;
   font-weight: normal;
-  font-family:"Quicksand", "Arial", sans-serif;
-  color: white;
-}
-
-@font-face { 
-  font-display: swap;
-  font-family: "Quicksand";
-  src: local("Quicksand"), url("../fonts/Quicksand-Bold.woff2") format("woff2"), url("../fonts/Quicksand-Bold.woff") format("woff");
-  font-weight: 700
-}
-
-@font-face {
-  font-display:swap;
-  font-family:"Quicksand";
-  src:local("Quicksand"), url("../fonts/Quicksand-Regular.woff2") format("woff2"), url("../fonts/Quicksand-Regular.woff") format("woff");
-  font-weight: 400
+  font-family: 'PT Sans', 'Arial', sans-serif;
+  color: #1d1e22;
+  background-color: #76b852;
 }
 
 .visually-hidden {
@@ -55,10 +42,9 @@ body {
 
 form {
   padding: 50px;
-  box-shadow: 5px 5px 20px 0 #dfd1e1;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   margin-bottom: 50px;
-  background-color:  #8f4299;
-  border-radius: 50px;
+  background-color: white;
 }
 
 .form__title {
@@ -80,40 +66,43 @@ input[type='file'] + label {
   background-repeat: no-repeat;
   background-size: 25px 25px;
   background-position: 17px 50%;
-  color:  #8f4299;
   font-size: 18px;
   line-height: 18px;
   font-weight: bold;
-  background-color: white;
-  border-radius: 20px;
+  background-color: #f2f2f2;
   cursor: pointer;
 }
 
 .form__label:hover,
 .form__label:focus {
-  opacity: 0.7;
+  padding: 9px 24px 9px 44px;
+  background-position: 16px 50%;
+  border: 1px solid #1d1e22;
 }
 
 .form__button,
 .new-form__button {
   padding: 10px 20px;
-  color: white;
   font-size: 18px;
   line-height: 20px;
-  font-weight: bold;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 20px;
+  color: #ffffff;
+  background-color: #76b852;
+  font-family: 'PT Sans', 'Arial', sans-serif;
+  text-transform: uppercase;
   cursor: pointer;
+  border: none;
   outline: none;
 }
 
 .form__button:hover,
-.form__button:focus {
-  opacity: 0.7;
+.new-form__button:hover,
+.form__button:focus,
+.new-form__button:focus {
+  background-color: #43A047;
 }
 
-.form__button:active {
+.form__button:active,
+.new-form__button:active {
   opacity: 0.3;
 }
 
@@ -124,23 +113,29 @@ input[type='file'] + label {
 .new-form__wrap div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .new-form__input {
+  padding: 10px;
+  font-size: 14px;
   width: 70%;
-  color: white;
   font-size: 18px;
   line-height: 20px;
-  background-color: transparent;
+  background-color: #f2f2f2;
   border: none;
-  border-bottom: 1px solid white;
   outline: none;
+}
+
+.new-form__input:hover,
+.new-form__input:focus {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #1d1e22;
 }
 
 .new-form__label {
   display: block;
   width: 25%;
-  color: white;
   font-size: 20px;
   line-height: 20px;
 }
@@ -179,7 +174,6 @@ input[type='checkbox'] {
 
   form {
     padding: 20px 16px;
-    box-shadow: 5px 5px 10px 10px #e5e5e5;
     margin-bottom: 20px;
   }
 
@@ -217,9 +211,21 @@ input[type='checkbox'] {
     background-position: 50% 34px;
   }
 
-  .form__button {
-    width: 100%;
+  .form__label:hover,
+  .form__label:focus {
+    padding: 9px 4px 34px 4px;
+    background-position: 50% 33px;
   }
+
+  .form__button,
+  .new-form__button {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+.new-form__button:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .form__wrapper {
