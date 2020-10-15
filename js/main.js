@@ -34,8 +34,13 @@
       console.log(newArr);
       let newArrLabel = Array.from(newArr.fields);
       console.log(newArrLabel);
+      // let newArrReferences = Array.from(newArr.references);
+      // console.log(newArrReferences);
       createNewWrap(newForm, newArr.fields, newArrLabel);
-      createNewButton(newForm, newArr.buttons, newArr.buttons);
+      // createNewReferences(newForm, newArr.references, newArrReferences)
+      if (newArr.buttons) {
+        createNewButton(newForm, newArr.buttons, newArr.buttons);
+      }
     }
   }
 
@@ -54,11 +59,19 @@
       wrap.forEach (function (item, i) {
         item = document.createElement('div');
         item.classList.add('new-form__wrap');
-        // item.innerHTML = content[i].label + content[i].input;
         createElementsForm(item, content[i].label, content[i].input.type, content[i].input.required);
         container.appendChild(item);
       });
     }
+
+    // function createNewReferences(container, wrap, content) {
+    //   wrap.forEach (function (item, i) {
+    //     item = document.createElement('div');
+    //     item.classList.add('new-form__wrap');
+    //     createCheckboxForm(item, content[i].text, content[i].input.type, content[i].input.required, content[i].input.checked);
+    //     container.appendChild(item);
+    //   });
+    // }
 
     const elementsFormTemplate = document.querySelector('#elementsForm');
 
@@ -71,6 +84,19 @@
       elementsForm.querySelector('input').required = contentInputRequired;
       container.appendChild(elementsForm);
     }
+
+    // const checkboxFormTemplate = document.querySelector('#checkboxForm');
+
+    // function createCheckboxForm(container, contentLabel, contentInputType, contentInputRequired, contentInputChecked) {
+    //   var elementsForm = checkboxFormTemplate.cloneNode(true).content.querySelector('div');;
+    //   elementsForm.querySelector('label').classList.add('new-form__label');
+    //   elementsForm.querySelector('input').classList.add('new-form__checkbox');
+    //   elementsForm.querySelector('label').textContent = contentLabel;
+    //   elementsForm.querySelector('input').type = contentInputType;
+    //   elementsForm.querySelector('input').required = contentInputRequired;
+    //   elementsForm.querySelector('input').checked = contentInputChecked;
+    //   container.appendChild(elementsForm);
+    // }
    
 
     function addClassElement (element, className) {
