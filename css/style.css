@@ -81,7 +81,8 @@ input[type='file'] + label {
 }
 
 .form__button,
-.new-form__button {
+.new-form__button,
+.reset {
   padding: 10px 20px;
   font-size: 18px;
   line-height: 20px;
@@ -104,6 +105,19 @@ input[type='file'] + label {
 .form__button:active,
 .new-form__button:active {
   opacity: 0.3;
+}
+
+.new-form__button:not(:first-child) {
+  margin-left: 15px;
+}
+
+.reset {
+  display: none;
+  margin: 25px auto;
+}
+
+.reset--show {
+  display: block;
 }
 
 .new-form__wrap {

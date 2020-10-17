@@ -5,14 +5,30 @@
   const form = document.querySelector('#form');
   const inputFile = form.querySelector('#jsonFile');
   const newForm = document.querySelector('.new-form');
+  const resetButton = document.querySelector('.reset');
 
   // загрузка json файла //
 
   const btnLoad = document.querySelector('#btnLoad');
   btnLoad.addEventListener('click', () => {
     addClassElement(newForm, 'new-form--show');
+    addClassElement(resetButton, 'reset--show');
     createJsonFiles();
   });
+
+  // удаление формы //
+
+  function removeForm() {
+    resetButton.addEventListener('click', () => {
+      if (newForm) {
+        newForm.innerHTML = '';
+        removeClassElement(newForm, 'new-form--show');
+        removeClassElement(resetButton, 'reset--show');
+      }
+    });
+  }
+
+  removeForm();
 
   // создание json файла //
   function createJsonFiles() {
@@ -110,6 +126,9 @@
    
     function addClassElement (element, className) {
       element.classList.add(className);
+    }
+    function removeClassElement (element, className) {
+      element.classList.remove(className);
     }
 
     function addNewJsonFile() {
