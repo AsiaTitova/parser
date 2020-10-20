@@ -17,7 +17,7 @@
           <form action="#" method="POST" enctype="multipart/form-data" id="form">
             <h2 class="form__title">Загрузить JSON File</h2>
             <div class="form__wrapper">
-              <input class="form__input visually-hidden" type="file" id="jsonFile" name="jsonFile" accept=".json">
+              <input class="form__input form__file visually-hidden" type="file" id="jsonFile" name="jsonFile" accept=".json">
               <label class="form__label" for="jsonFile">
                 <span class="form__label--text">Выберите файл</span>
               </label>
@@ -43,9 +43,12 @@
 
     <template id="checkboxForm">
       <div>
-        <label for=""></label>
         <input type="" id="">
       </div>
+    </template>
+
+    <template id="selectForm">
+      <select></select>
     </template>
 
     <script src="js/main.js"></script>
