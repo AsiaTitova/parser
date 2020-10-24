@@ -64,7 +64,7 @@
       wrap.forEach (function (item, i) {
         item = document.createElement('div');
         item.classList.add('new-form__wrap');
-        createElementsForm(item, content[i].label, content[i].input.type, content[i].input.required, content[i].input.placeholder, content[i].input.multiple, content[i].input.filetype, content[i].input.mask, content[i].input.technologies);
+        createElementsForm(item, content[i].label, content[i].input.type, content[i].input.required, content[i].input.placeholder, content[i].input.multiple, content[i].input.filetype, content[i].input.mask, content[i].input.technologies, content[i].input.colors);
         container.appendChild(item);
       });
     }
@@ -86,7 +86,7 @@
 
     // создание и заполнение Label и Input контентом и атрибутами //
 
-    function createElementsForm(container, contentLabel, contentInputType, contentInputRequired, contentInputPlaceholder, contentInputMultiple, contentInputFiletype, contentInputMask, contentTechnology) {
+    function createElementsForm(container, contentLabel, contentInputType, contentInputRequired, contentInputPlaceholder, contentInputMultiple, contentInputFiletype, contentInputMask, contentTechnology, contentList) {
       var elementsForm = elementsFormTemplate.cloneNode(true).content.querySelector('div');;
       elementsForm.querySelector('label').classList.add('new-form__label');
       elementsForm.querySelector('input').classList.add('new-form__input');
@@ -94,6 +94,17 @@
       elementsForm.querySelector('label').for = contentLabel;
       elementsForm.querySelector('input').id = contentLabel;
       elementsForm.querySelector('input').type = contentInputType;
+      if (elementsForm.querySelector('input').type === 'color') {
+        elementsForm.querySelector('input').list = 'presetColors';
+        let colors = container.createElement('datalist');
+        colors.id = 'presetColors'
+        contentList.forEach (function (item) {
+          let option = colors.createElement('option');
+          option.value = item;
+          colors.appendChild(option);
+        });
+        container.appendChild(colors);
+      }
       if (contentInputPlaceholder) {
         elementsForm.querySelector('input').placeholder = contentInputPlaceholder;
       }
