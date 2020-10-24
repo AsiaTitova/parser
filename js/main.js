@@ -95,15 +95,15 @@
       elementsForm.querySelector('input').id = contentLabel;
       elementsForm.querySelector('input').type = contentInputType;
       if (elementsForm.querySelector('input').type === 'color') {
-        elementsForm.querySelector('input').list = 'presetColors';
-        let colors = container.createElement('datalist');
+        elementsForm.querySelector('input').setAttribute('list', 'presetColors');
+        let colors = document.createElement('datalist');
         colors.id = 'presetColors'
         contentList.forEach (function (item) {
-          let option = colors.createElement('option');
+          let option = document.createElement('option');
           option.value = item;
           colors.appendChild(option);
         });
-        container.appendChild(colors);
+        elementsForm.appendChild(colors);
       }
       if (contentInputPlaceholder) {
         elementsForm.querySelector('input').placeholder = contentInputPlaceholder;
@@ -115,7 +115,11 @@
         elementsForm.querySelector('input').multiple = contentInputMultiple;
       }
       if (contentInputMask) {
+        elementsForm.querySelector('input').type = 'text';
         elementsForm.querySelector('input').placeholder = contentInputMask;
+        jQuery(function($){
+          $(elementsForm.querySelector('input')).mask(contentInputMask);
+        });
       }
       if (contentInputType === 'technology') {
         elementsForm.querySelector('input').classList.add('visually-hidden');

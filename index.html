@@ -6,33 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   </head>
   <body>
-    <header>
-
-    </header>
-    <main>
-      <section class="page-main__form form">
-        <div class="form__container container">
-          <form action="#" method="POST" enctype="multipart/form-data" id="form">
-            <h2 class="form__title">Загрузить JSON File</h2>
-            <div class="form__wrapper">
-              <input class="form__input form__file visually-hidden" type="file" id="jsonFile" name="jsonFile" accept=".json">
-              <label class="form__label" for="jsonFile">
-                <span class="form__label--text">Выберите файл</span>
-              </label>
-              <button class="form__button" type="button" id="btnLoad" value="Load"">Загрузить</button>
-            </div>
-          </form>
-          <button class="reset" type="button">Удалить форму</button>
-          <form class="new-form" action="#" method="POST" enctype="multipart/form-data" id="new-form">
-          </form>
-        </div>
-      </section>
+    <section class="page-main__form form">
+      <div class="form__container container">
+        <form action="#" method="POST" enctype="multipart/form-data" id="form">
+          <h2 class="form__title">Загрузить JSON File</h2>
+          <div class="form__wrapper">
+            <input class="form__input form__file visually-hidden" type="file" id="jsonFile" name="jsonFile" accept=".json">
+            <label class="form__label" for="jsonFile">
+              <span class="form__label--text">Выберите файл</span>
+            </label>
+            <button class="form__button" type="button" id="btnLoad" value="Load"">Загрузить</button>
+          </div>
+        </form>
+        <button class="reset" type="button">Удалить форму</button>
+        <form class="new-form" action="#" method="POST" enctype="multipart/form-data" id="new-form">
+        </form>
+      </div>
     </main>
-    <footer>
-
-    </footer>
        
     <template id="elementsForm">
       <div>
@@ -50,7 +43,8 @@
     <template id="selectForm">
       <select></select>
     </template>
-
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery.maskedinput.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
